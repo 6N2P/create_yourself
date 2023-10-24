@@ -15,12 +15,28 @@ namespace I_am_profi
         public MainPage()
         {
             InitializeComponent();
-            this.BindingContext = new MainPageViewModel();
+            _mainPageviewModel = new MainPageViewModel();
+            this.BindingContext = _mainPageviewModel;
         }
+        private MainPageViewModel _mainPageviewModel;
+
 
         private async void CreateSkillBtn_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreateSkillPage());
+            CreateSkillViewModel createSkillViewModel = new CreateSkillViewModel();
+            createSkillViewModel.CreateSkillEvent += _mainPageviewModel.GetSkills;
+            await Navigation.PushAsync(new CreateSkillPage(createSkillViewModel));
+        }
+
+        private async void EditSkillBtn_Clicked(object sender, EventArgs e)
+        {
+            if(_mainPageviewModel.SelectedSkill != null)
+            {
+                EditSkillViewModel editSkillViewModel = new EditSkillViewModel(_mainPageviewModel.SelectedSkill);
+
+                await Navigation.PushAsync(new EditSkillPage(editSkillViewModel));
+            }
+            
         }
     }
 }

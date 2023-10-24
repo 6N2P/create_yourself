@@ -17,6 +17,9 @@ namespace I_am_profi.ViewModeks
             CreateSkillCommand = new Command(CreateSkill);
         }
 
+        public delegate void CreateSkillHandler();
+        public event CreateSkillHandler CreateSkillEvent;
+
         private static DB dB;
         public static DB DB
         {
@@ -59,6 +62,8 @@ namespace I_am_profi.ViewModeks
             skill.IsKeepTrack = true;
 
             DB.SaveSkill(skill);
+
+            CreateSkillEvent?.Invoke();
         }
     }
 }

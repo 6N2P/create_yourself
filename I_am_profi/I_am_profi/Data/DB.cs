@@ -24,5 +24,9 @@ namespace I_am_profi.Data
         {
             return conn.Insert(skill);
         }
+        public void DeleteSkill(Skill skill)
+        { 
+             conn.Delete(skill);
+        }
     }
 }

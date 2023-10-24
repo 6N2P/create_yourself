@@ -19,12 +19,13 @@ namespace I_am_profi.ViewModeks
         
         public MainPageViewModel()
         {
-            
-
             GetSkills();
+            DeleteSkillCommand = new Command(DeleteSkill);
         }
 
-        
+      
+
+        public ICommand DeleteSkillCommand { get; }
         private static DB dB;
         public static DB DB
         {
@@ -45,9 +46,18 @@ namespace I_am_profi.ViewModeks
                 OnPropertyChanged(nameof(Skills));
             }
         }
-      
+        private Skill _selectedSkill;
+        public Skill SelectedSkill
+        {
+            get => _selectedSkill;
+            set
+            {
+                _selectedSkill = value;
+                OnPropertyChanged(nameof(SelectedSkill));
+            }
+        }
 
-        private void GetSkills()
+        public void GetSkills()
         {
             ObservableCollection<Skill> newSkills = new ObservableCollection<Skill>();
             var s = DB.GetSkills();
@@ -60,6 +70,15 @@ namespace I_am_profi.ViewModeks
             }
             Skills = newSkills;
         }
-     
+        private void DeleteSkill()
+        {
+            if(SelectedSkill!= null)
+            {
+                DB.DeleteSkill(SelectedSkill);
+                SelectedSkill = null;
+                GetSkills();
+            }
+        }
+
     }
 }

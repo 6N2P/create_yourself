@@ -4,15 +4,34 @@
              x:Class="I_am_profi.MainPage">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Прокачай себя" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        <Frame BackgroundColor="#2196F3" 
+               Padding="24" 
+               CornerRadius="0"
+               Margin="0,5">
+            <Label Text="Прокачай себя" 
+                   HorizontalTextAlignment="Center"
+                   TextColor="White" 
+                   FontSize="36"
+                   />
         </Frame>
-        <ListView ItemsSource="{Binding Skills}">
+        <ListView ItemsSource="{Binding Skills}"
+                  SelectedItem="{Binding SelectedSkill}">
             
         </ListView>
-        <Button x:Name="CreateSkillBtn"
-            Text="Создать навык" 
-                Clicked="CreateSkillBtn_Clicked"/>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center">
+            <Button x:Name="CreateSkillBtn"
+                    Text="Создать навык" 
+                    Clicked="CreateSkillBtn_Clicked"/>
+            
+            <Button x:Name="EditSkillBtn"
+                    Text="Редактирвать"   
+                    Clicked="EditSkillBtn_Clicked"/>
+            
+            <Button x:Name="DeletSkillBtn"
+                    Text="Удалить"
+                    Command="{Binding DeleteSkillCommand}"/>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

@@ -11,9 +11,9 @@ using Xamarin.Forms.Xaml;
 namespace I_am_profi.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CreateSkillPage : ContentPage
+    public partial class EditSkillPage : ContentPage
     {
-        public CreateSkillPage(CreateSkillViewModel vm )
+        public EditSkillPage(EditSkillViewModel vm)
         {
             InitializeComponent();
             this.BindingContext = vm;
