@@ -21,6 +21,30 @@
                    VerticalTextAlignment="Center"
                    Text="{Binding GoalString}"/>
 
+            <Label 
+                   Text="Время для лостижения цели"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"/>
+            <Entry 
+                   VerticalTextAlignment="Center"
+                   Text="{Binding GoalTime}"/>
+
+            <Label 
+                   Text="Желаемое время в неделю"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"/>
+            <Entry 
+                   VerticalTextAlignment="Center"
+                   Text="{Binding DesiredTime}"/>
+
+            <Label 
+                   Text="Кол-во шт."
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"/>
+            <Entry 
+                   VerticalTextAlignment="Center"
+                   Text="{Binding CountRepet}"/>
+
             <Button Text ="Создать"
                     Command="{Binding CreateSkillCommand}"/>
         </StackLayout>

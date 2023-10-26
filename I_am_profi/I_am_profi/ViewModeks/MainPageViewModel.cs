@@ -31,6 +31,7 @@ namespace I_am_profi.ViewModeks
         {
             get
             {
+                
                 if (dB is null) dB = new DB(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"skillDB.sqlite3"));
                 return dB;
             }

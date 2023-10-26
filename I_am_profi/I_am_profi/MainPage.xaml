@@ -21,16 +21,23 @@
         <StackLayout Orientation="Horizontal"
                      HorizontalOptions="Center">
             <Button x:Name="CreateSkillBtn"
-                    Text="Создать навык" 
+                    Style="{StaticResource MyButton}"
+                    Text="С" 
                     Clicked="CreateSkillBtn_Clicked"/>
             
             <Button x:Name="EditSkillBtn"
-                    Text="Редактирвать"   
+                    Style="{StaticResource MyButton}"
+                    Text="Р"   
                     Clicked="EditSkillBtn_Clicked"/>
             
             <Button x:Name="DeletSkillBtn"
-                    Text="Удалить"
+                    Style="{StaticResource MyButton}"
+                    Text="У"
                     Command="{Binding DeleteSkillCommand}"/>
+            <Button Text="Н"
+                    Style="{StaticResource MyButton}"/>
+            <Button Text="Наг"
+                    Style="{StaticResource MyButton}"/>
         </StackLayout>
     </StackLayout>
 
