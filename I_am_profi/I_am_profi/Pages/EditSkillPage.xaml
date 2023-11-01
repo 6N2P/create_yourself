@@ -3,18 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="I_am_profi.Pages.EditSkillPage">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Orientation="Horizontal">
+        <StackLayout Margin="5">
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
                 <Label Text="Навык "/>
-                <Label Text="test"/>
+                <Label Text="{Binding SkillName}"/>
             </StackLayout>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Text=""/>
-            </Grid>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <Label Text="Общее время"/>
+                <Label Text="{Binding GoalTime}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+                <Label Text ="Время"/>
+                <Label Text="{Binding AllTime}"/>
+            </StackLayout>
+            <Entry Text="{Binding Minuts}"
+                   WidthRequest="40"/>
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="Center">
+                <Button Text="+" 
+                        Style="{StaticResource MyButton}"
+                        Command="{Binding AddTime}"/>
+                <Button Text ="-" 
+                        Style="{StaticResource MyButton}"
+                        Command="{Binding TakeAwayTime}"/>
+            </StackLayout>
+            <Label Text="Кол-во  раз"/>
+            <Entry Text="{Binding CountRepet}"/>
+            
+            <Label Text="Кол-во выполненых раз"/>
+            <Entry Text="{Binding CountRepetNow}"/>
+            
+            <Label Text="Ради:"/>
+            <Label Text="{Binding WhatIsGoal}"/>
+            <Button Text="Редактировать"
+                    Command="{Binding EditSkill}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

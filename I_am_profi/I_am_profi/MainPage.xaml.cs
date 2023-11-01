@@ -33,7 +33,7 @@ namespace I_am_profi
             if(_mainPageviewModel.SelectedSkill != null)
             {
                 EditSkillViewModel editSkillViewModel = new EditSkillViewModel(_mainPageviewModel.SelectedSkill);
-
+                editSkillViewModel.EditSkillEvent += _mainPageviewModel.GetSkills;
                 await Navigation.PushAsync(new EditSkillPage(editSkillViewModel));
             }
             

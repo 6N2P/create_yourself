@@ -24,10 +24,15 @@ namespace I_am_profi.Data
             return conn.Table<Skill>().ToList();
         }
 
+        public void ChangeTimeAlltSkill(Skill skill)
+        {
+            conn.Update(skill);
+        }
         public int SaveSkill(Skill skill)
         {
             return conn.Insert(skill);
         }
+        
         public void DeleteSkill(Skill skill)
         {
             conn.Delete(skill);

@@ -14,12 +14,13 @@ namespace I_am_profi.Data
         public TimeSpan GoalTime { get; set; } //конечное сумарное варемя 
         public TimeSpan DesiredTime { get; set; } //желаемое время за навыком в неделю
         public int CountRepet { get; set; } //колличество шт. (например сколько книг желаешь прочитать)
+        public int CountRepetNaw { get; set; } //сколько уже сделал
         public string WhatIsGoal { get; set; } 
         public bool IsKeepTrack { get; set; } //отсллеживать(напоминать)
 
         public override string ToString()
         {
-            return $"{Name} {AllTime}";
+            return $"{Name} {AllTime} нужно времени {GoalTime} сдел. {CountRepetNaw} всего: {CountRepet}";
         }
     }
 }
