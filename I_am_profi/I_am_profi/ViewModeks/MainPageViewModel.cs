@@ -21,6 +21,8 @@ namespace I_am_profi.ViewModeks
         {
             GetSkills();
             DeleteSkillCommand = new Command(DeleteSkill);
+            DateDay = DateTime.Now.ToString("dd");
+            Month = DateTime.Now.ToString("MMMM").ToUpper();
         }
 
       
@@ -55,6 +57,26 @@ namespace I_am_profi.ViewModeks
             {
                 _selectedSkill = value;
                 OnPropertyChanged(nameof(SelectedSkill));
+            }
+        }
+        private string _dateDay;
+        public string DateDay
+        {
+            get=> _dateDay;
+            set
+            {
+                _dateDay = value;
+                OnPropertyChanged(nameof(DateDay));
+            }
+        }
+        private string _month;
+        public string Month
+        {
+            get => _month;
+            set
+            {
+                _month = value;
+                OnPropertyChanged(nameof(Month));
             }
         }
 

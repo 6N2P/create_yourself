@@ -22,7 +22,7 @@
                    Text="{Binding GoalString}"/>
 
             <Label 
-                   Text="Время для лостижения цели"
+                   Text="Время для лостижения цели, часы"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"/>
             <Entry 
@@ -30,7 +30,7 @@
                    Text="{Binding GoalTime}"/>
 
             <Label 
-                   Text="Желаемое время в неделю"
+                   Text="Желаемое время в неделю, часы"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"/>
             <Entry 

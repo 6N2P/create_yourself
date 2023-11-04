@@ -151,9 +151,38 @@ namespace I_am_profi.ViewModeks
             _skill.AllTime = ConvertToTime( AllTime);
             _skill.CountRepet = CountRepet;
             _skill.CountRepetNaw = CountRepetNow;
+            _skill.ProcentSkill = GetProcent();
 
             DB.ChangeTimeAlltSkill( _skill );
             EditSkillEvent?.Invoke();
         }
+
+        private int GetProcent()
+        {
+            double procentTime = 0;
+            double procentCount = 0;
+            int result = 0;
+
+            if(CountRepet == 1)
+            {
+                double gH = ConvertToTime(GoalTime).Hours;
+                double g = ConvertToTime(GoalTime).Minutes;
+                double gTime = gH * 60 + g;
+
+                double aH = ConvertToTime(AllTime).Hours;
+                double a = ConvertToTime(AllTime).Minutes;
+                double aTime = aH * 60 + a;
+                procentTime = (100 / gTime) * aTime;
+                result = Convert.ToInt32(procentTime);
+            }
+            else
+            {
+                procentCount = (100 / CountRepet) * CountRepetNow;
+                result = Convert.ToInt32(procentCount);
+            }
+            return result;
+        }
+
+       
     }
 }

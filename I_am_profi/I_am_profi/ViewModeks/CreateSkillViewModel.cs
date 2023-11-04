@@ -95,11 +95,12 @@ namespace I_am_profi.ViewModeks
             Skill skill = new Skill();
             skill.Name = SkillName;
             skill.AllTime = TimeSpan.Zero;
-            skill.GoalTime = TimeSpan.FromMinutes( GoalTime);
-            skill.DesiredTime = TimeSpan.FromMinutes( DesiredTime);
+            skill.GoalTime = TimeSpan.FromHours( GoalTime);
+            skill.DesiredTime = TimeSpan.FromHours( DesiredTime);
             skill.CountRepet = CountRepet;
             skill.WhatIsGoal = GoalString;
             skill.IsKeepTrack = true;
+            skill.ProcentSkill = 0;
 
             DB.SaveSkill(skill);
 

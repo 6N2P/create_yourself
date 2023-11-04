@@ -17,6 +17,7 @@ namespace I_am_profi.Data
         public int CountRepetNaw { get; set; } //сколько уже сделал
         public string WhatIsGoal { get; set; } 
         public bool IsKeepTrack { get; set; } //отсллеживать(напоминать)
+        public int ProcentSkill { get; set; } 
 
         public override string ToString()
         {

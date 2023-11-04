@@ -1,44 +1,257 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+            
+             
+             xmlns:ex="http://xamarin.com/schemas/2020/toolkit"
              x:Class="I_am_profi.MainPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" 
+    <Grid BackgroundColor="#F3F5F9"
+          RowSpacing="0"
+          HorizontalOptions="FillAndExpand"
+          VerticalOptions="FillAndExpand">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <!--#region Верхнее табло -->
+        <Frame Grid.Row="0"
+            BackgroundColor="#5C5470" 
                Padding="24" 
                CornerRadius="0"
                Margin="0,5">
             <Label Text="Прокачай себя" 
                    HorizontalTextAlignment="Center"
-                   TextColor="White" 
-                   FontSize="36"
-                   />
+                   TextColor="#F3F5F9" 
+                   FontSize="36"/>
         </Frame>
-        <ListView ItemsSource="{Binding Skills}"
-                  SelectedItem="{Binding SelectedSkill}">
-            
-        </ListView>
-        <StackLayout Orientation="Horizontal"
+        <!--#endregion-->
+        <!--#region Дата -->
+        <pv:PancakeView Grid.Row="1"                        
+                        HeightRequest="80"
+                        Margin="0,-40,0,0"
+                        HorizontalOptions="Center">
+            <pv:PancakeView.Shadow>
+                <pv:DropShadow Color="Black" Offset="10,10"/>
+            </pv:PancakeView.Shadow>
+            <Grid ColumnSpacing="0"
+                  HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <BoxView Grid.RowSpan="2"
+                         WidthRequest="80"
+                         BackgroundColor="#B9B4C7"/>
+                <BoxView Grid.Column="1"
+                         Grid.RowSpan="2"
+                         WidthRequest="80"
+                         BackgroundColor="#FAF0E6"/>
+                <StackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <Label Text="{Binding DateDay}"
+                           TextColor="#F3F5F9"
+                           FontSize="36"
+                           HorizontalOptions="Center"/>
+                    <Label Text="{Binding Month}"
+                           TextColor="#F3F5F9"
+                           FontSize="12"
+                           HorizontalOptions="Center"
+                           Margin="0,-10,0,0"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center">
+                    <Label Text="28"
+                           TextColor="#5C5470"
+                           FontSize="36"
+                           HorizontalOptions="Center"/>
+                    <Label Text="MARCH"
+                           TextColor="#5C5470"
+                           FontSize="12"
+                           HorizontalOptions="Center"
+                           Margin="0,-10,0,0"/>
+                </StackLayout>
+                <BoxView Grid.Row="1"
+                         Grid.ColumnSpan="2"
+                         WidthRequest="73"
+                         HeightRequest="1"
+                         BackgroundColor="#F3F5F9"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"/>
+                <pv:PancakeView Grid.Row="1"
+                                HeightRequest="7"
+                                WidthRequest="7"                                
+                                CornerRadius="3.5"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Margin="7"/>
+                <pv:PancakeView Grid.Row="1"
+                                Grid.Column="1"
+                                HeightRequest="7"
+                                WidthRequest="7"                                    
+                                CornerRadius="3.5"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Margin="7"/>
+
+            </Grid>
+        </pv:PancakeView>
+        <!--#endregion-->
+        <!--#region Список навыков -->
+        <CollectionView Grid.Row="2"
+                        Margin="25"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        SelectionMode="None"
+                        ItemsSource="{Binding Skills}"
+                        SelectedItem="{Binding SelectedSkill}">
+            <CollectionView.Header>
+                <Label Text="Навыки"
+                       TextColor="Black"
+                       FontSize="20"/>
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="20"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <pv:PancakeView 
+                                    BackgroundColor="#FAF0E6"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="FillAndExpand">
+                        <pv:PancakeView.Shadow>
+                            <pv:DropShadow Color="Black" Offset="10,10"/>
+                        </pv:PancakeView.Shadow>
+                        <Grid VerticalOptions="StartAndExpand"
+                              HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <BoxView BackgroundColor="Black"
+                                     WidthRequest="3"
+                                     HorizontalOptions="Start"
+                                     VerticalOptions="FillAndExpand"/>
+                            <ex:Expander Grid.Column="1"
+                                         VerticalOptions="Center"
+                                         Tapped="Expander_Tapped">
+                                <ex:Expander.Header>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="3.5"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0"
+                                                     Orientation="Horizontal">
+
+                                            <Label  HorizontalTextAlignment="Center"
+                                                    VerticalTextAlignment="Center"
+                                                    FontSize="16"
+                                                    Margin="3,3,0,3"
+                                                    TextColor="Black"
+                                                    Text="{Binding ProcentSkill}"/>
+                                            <Label  HorizontalTextAlignment="Center"
+                                                    VerticalTextAlignment="Center"
+                                                    FontSize="16"                                                    
+                                                    TextColor="Black"
+                                                    Text="%"/>
+                                        </StackLayout>
+                                        <Label Grid.Column="1"
+                                               FontSize="18"
+                                               Text="{Binding Name}"
+                                               TextColor="Black"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Grid>
+                                </ex:Expander.Header>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3.5"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Grid.Column="1"
+                                                 Orientation="Vertical">
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="FillAndExpand">
+                                            <Label Text="Вложенное время"
+                                                   TextColor="#352F44"/>
+                                            <Label Text="{Binding AllTime, StringFormat='{}{0:hh\\:mm}'}"
+                                                   TextColor="#352F44"/>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="FillAndExpand">
+                                            <Label Text="Планируемое время длля цели"
+                                                   TextColor="#5C5470"/>
+                                            <Label Text="{Binding GoalTime, StringFormat='{}{0:dd\\.hh\\:mm}'}"
+                                                   TextColor="#5C5470"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="FillAndExpand">
+                                            <Label Text="Выполнено"
+                                                   TextColor="#352F44"/>
+                                            <Label Text="{Binding CountRepetNaw}"
+                                                   TextColor="#352F44"/>
+                                            <Label Text="раз"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="FillAndExpand">
+                                            <Label Text="Планируемое  количество"
+                                                   TextColor="#5C5470"/>
+                                            <Label Text="{Binding CountRepet}"
+                                                   TextColor="#5C5470"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </ex:Expander>
+                        </Grid>
+                    </pv:PancakeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!--#endregion-->
+
+        <!--#region Нижние кнопки -->
+        <StackLayout Grid.Row="3"
+            Orientation="Horizontal"
                      HorizontalOptions="Center">
             <Button x:Name="CreateSkillBtn"
-                    Style="{StaticResource MyButton}"
-                    Text="С" 
+                    ImageSource="Create_1_32.png"
+                    Style="{StaticResource MyButton}"                    
                     Clicked="CreateSkillBtn_Clicked"/>
-            
+
             <Button x:Name="EditSkillBtn"
                     Style="{StaticResource MyButton}"
-                    Text="Р"   
+                    ImageSource="Edit_32.png"  
                     Clicked="EditSkillBtn_Clicked"/>
-            
+
             <Button x:Name="DeletSkillBtn"
                     Style="{StaticResource MyButton}"
-                    Text="У"
+                    ImageSource="Delet_32.png"
                     Command="{Binding DeleteSkillCommand}"/>
-            <Button Text="Н"
+            <Button ImageSource="Clok_32.png"
                     Style="{StaticResource MyButton}"/>
-            <Button Text="Наг"
+            <Button ImageSource="Medal_32.png"
                     Style="{StaticResource MyButton}"/>
         </StackLayout>
-    </StackLayout>
+        <!--#endregion-->
+    </Grid>
 
 </ContentPage>

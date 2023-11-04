@@ -6,7 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.CommunityToolkit;
 using I_am_profi.Pages;
+using Xamarin.CommunityToolkit.UI.Views;
+using I_am_profi.Data;
 
 namespace I_am_profi
 {
@@ -19,7 +22,7 @@ namespace I_am_profi
             this.BindingContext = _mainPageviewModel;
         }
         private MainPageViewModel _mainPageviewModel;
-
+        
 
         private async void CreateSkillBtn_Clicked(object sender, EventArgs e)
         {
@@ -35,8 +38,13 @@ namespace I_am_profi
                 EditSkillViewModel editSkillViewModel = new EditSkillViewModel(_mainPageviewModel.SelectedSkill);
                 editSkillViewModel.EditSkillEvent += _mainPageviewModel.GetSkills;
                 await Navigation.PushAsync(new EditSkillPage(editSkillViewModel));
-            }
-            
+            }            
+        }
+        //Для того чтобы можно было выбирать в Expandere эллемент
+        private void Expander_Tapped(object sender, EventArgs e)
+        {
+            var Exp = ((Expander)sender).BindingContext as Skill;
+            this._mainPageviewModel.SelectedSkill = Exp;
         }
     }
 }
