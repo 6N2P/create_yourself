@@ -23,6 +23,8 @@ namespace I_am_profi.ViewModeks
             DeleteSkillCommand = new Command(DeleteSkill);
             DateDay = DateTime.Now.ToString("dd");
             Month = DateTime.Now.ToString("MMMM").ToUpper();
+            DayYear = DateTime.Now.DayOfYear;
+            DayOfWeek = DateTime.Now.ToString("dddd").ToUpper();
         }
 
       
@@ -77,6 +79,28 @@ namespace I_am_profi.ViewModeks
             {
                 _month = value;
                 OnPropertyChanged(nameof(Month));
+            }
+        }
+
+        private int _deyYear;
+        public int DayYear
+        {
+            get => _deyYear;
+            set
+            {
+                _deyYear = value;
+                OnPropertyChanged(nameof(DayYear));
+            }
+        }
+
+        private string _dayOfweek;
+        public string DayOfWeek
+        {
+            get => _dayOfweek;
+            set
+            {
+                _dayOfweek = value;
+                OnPropertyChanged(nameof(DayOfWeek));
             }
         }
 

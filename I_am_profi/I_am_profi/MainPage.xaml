@@ -74,11 +74,11 @@
                 <StackLayout Grid.Column="1"
                              HorizontalOptions="Center"
                              VerticalOptions="Center">
-                    <Label Text="28"
+                    <Label Text="{Binding DayYear}"
                            TextColor="#5C5470"
                            FontSize="36"
                            HorizontalOptions="Center"/>
-                    <Label Text="MARCH"
+                    <Label Text="{Binding DayOfWeek}"
                            TextColor="#5C5470"
                            FontSize="12"
                            HorizontalOptions="Center"
@@ -139,10 +139,10 @@
                         <Grid VerticalOptions="StartAndExpand"
                               HorizontalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="10"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <BoxView BackgroundColor="Black"
+                            <BoxView BackgroundColor="#180F2C"
                                      WidthRequest="3"
                                      HorizontalOptions="Start"
                                      VerticalOptions="FillAndExpand"/>
@@ -152,22 +152,19 @@
                                 <ex:Expander.Header>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="3.5"/>
                                         </Grid.ColumnDefinitions>
                                         <StackLayout Grid.Column="0"
-                                                     Orientation="Horizontal">
+                                                     Orientation="Horizontal"
+                                                     HorizontalOptions="Center"
+                                                     VerticalOptions="Center">
 
-                                            <Label  HorizontalTextAlignment="Center"
-                                                    VerticalTextAlignment="Center"
-                                                    FontSize="16"
-                                                    Margin="3,3,0,3"
+                                            <Label   FontSize="16"
                                                     TextColor="Black"
                                                     Text="{Binding ProcentSkill}"/>
-                                            <Label  HorizontalTextAlignment="Center"
-                                                    VerticalTextAlignment="Center"
-                                                    FontSize="16"                                                    
+                                            <Label  FontSize="16"  
                                                     TextColor="Black"
                                                     Text="%"/>
                                         </StackLayout>
@@ -181,7 +178,7 @@
                                 </ex:Expander.Header>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="35"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="3.5"/>
                                     </Grid.ColumnDefinitions>
@@ -192,11 +189,11 @@
                                                      HorizontalOptions="FillAndExpand">
                                             <Label Text="Вложенное время"
                                                    TextColor="#352F44"/>
-                                            <Label Text="{Binding AllTime, StringFormat='{}{0:hh\\:mm}'}"
+                                            <Label Text="{Binding AllTime, StringFormat='{}{0:dd\\.hh\\:mm}'}"
                                                    TextColor="#352F44"/>
                                         </StackLayout>
 
-                                        <StackLayout Orientation="Horizontal"
+                                        <StackLayout Orientation="Vertical"
                                                      HorizontalOptions="FillAndExpand">
                                             <Label Text="Планируемое время длля цели"
                                                    TextColor="#5C5470"/>
@@ -209,7 +206,8 @@
                                                    TextColor="#352F44"/>
                                             <Label Text="{Binding CountRepetNaw}"
                                                    TextColor="#352F44"/>
-                                            <Label Text="раз"/>
+                                            <Label Text="раз"
+                                                   TextColor="#352F44"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal"
                                                      HorizontalOptions="FillAndExpand">
@@ -218,6 +216,7 @@
                                             <Label Text="{Binding CountRepet}"
                                                    TextColor="#5C5470"/>
                                         </StackLayout>
+                                        <Label Text=""/>
                                     </StackLayout>
                                 </Grid>
                             </ex:Expander>
@@ -233,7 +232,7 @@
             Orientation="Horizontal"
                      HorizontalOptions="Center">
             <Button x:Name="CreateSkillBtn"
-                    ImageSource="Create_1_32.png"
+                    ImageSource="Create_1_32.png"                   
                     Style="{StaticResource MyButton}"                    
                     Clicked="CreateSkillBtn_Clicked"/>
 

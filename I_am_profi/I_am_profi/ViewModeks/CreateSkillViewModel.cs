@@ -13,7 +13,7 @@ namespace I_am_profi.ViewModeks
 
         public CreateSkillViewModel() 
         {
-            SkillName = "Создание";
+            SkillName = "Навык";
             CountRepet = 1;
             CreateSkillCommand = new Command(CreateSkill);
         }

@@ -3,50 +3,93 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="I_am_profi.Pages.CreateSkillPage">
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            
-            <Label 
-                   Text="Навык"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
-            <Entry 
-                   VerticalTextAlignment="Center"
-                   Text="{Binding SkillName}"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="110"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <!--#region Верхнее табло -->
+            <Frame Grid.Row="0"
+                   BackgroundColor="#5C5470" 
+                   Padding="24" 
+                   CornerRadius="0"
+                   Margin="0,5">
+                <Label Text="Создание" 
+                       HorizontalTextAlignment="Center"
+                       TextColor="#F3F5F9" 
+                       FontSize="36"/>
+            </Frame>
+            <!--#endregion-->
+            <Grid Grid.Row="1"
+                  Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="170"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
 
-            <Label 
-                   Text="Для чего"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
-            <Entry 
-                   VerticalTextAlignment="Center"
-                   Text="{Binding GoalString}"/>
+                <Label Grid.Row="0"
+                       Text="Навык"
+                       Style="{StaticResource MyLabel_1}"/>
+                <Entry Grid.Row="0"
+                       Grid.Column="1"
+                       Text="{Binding SkillName}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="10,0"/>
 
-            <Label 
-                   Text="Время для лостижения цели, часы"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
-            <Entry 
-                   VerticalTextAlignment="Center"
-                   Text="{Binding GoalTime}"/>
+                <Label Grid.Row="1"
+                       Text="Для чего"
+                       Style="{StaticResource MyLabel_1}"/>
+                <Entry Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding GoalString}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="10,0"/>
 
-            <Label 
-                   Text="Желаемое время в неделю, часы"
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
-            <Entry 
-                   VerticalTextAlignment="Center"
-                   Text="{Binding DesiredTime}"/>
+                <Label Grid.Row="2"
+                       Text="Время для лостижения цели, часы"
+                       Style="{StaticResource MyLabel_1}"/>
+                <Entry Grid.Row="2"
+                       Grid.Column="1"
+                       Text="{Binding GoalTime}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="30,0"/>
 
-            <Label 
-                   Text="Кол-во шт."
-                   VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"/>
-            <Entry 
-                   VerticalTextAlignment="Center"
-                   Text="{Binding CountRepet}"/>
+                <Label Grid.Row="3"
+                       Text="Желаемое время в неделю, часы"
+                       Style="{StaticResource MyLabel_1}"/>
+                <Entry Grid.Row="3"
+                       Grid.Column="1"
+                       Text="{Binding DesiredTime}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="30,0"/>
 
-            <Button Text ="Создать"
-                    Command="{Binding CreateSkillCommand}"/>
-        </StackLayout>
+                <Label Grid.Row="4"
+                       Text="Кол-во шт."
+                       Style="{StaticResource MyLabel_1}"/>
+                <Entry Grid.Row="4"
+                       Grid.Column="1"
+                       Text="{Binding CountRepet}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="30,0"/>
+            </Grid>
+            <Button Grid.Row="2"
+                    Text ="Создать"
+                    Command="{Binding CreateSkillCommand}"
+                    CornerRadius="20"
+                    Margin="5"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -1,45 +1,130 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="I_am_profi.Pages.EditSkillPage">
     <ContentPage.Content>
-        <StackLayout Margin="5">
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center">
-                <Label Text="Навык "/>
-                <Label Text="{Binding SkillName}"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center">
-                <Label Text="Общее время"/>
-                <Label Text="{Binding GoalTime}"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center">
-                <Label Text ="Время"/>
-                <Label Text="{Binding AllTime}"/>
-            </StackLayout>
-            <Entry Text="{Binding Minuts}"
-                   WidthRequest="40"/>
-            <StackLayout Orientation="Horizontal"
-                         VerticalOptions="Center">
-                <Button Text="+" 
-                        Style="{StaticResource MyButton}"
-                        Command="{Binding AddTime}"/>
-                <Button Text ="-" 
-                        Style="{StaticResource MyButton}"
-                        Command="{Binding TakeAwayTime}"/>
-            </StackLayout>
-            <Label Text="Кол-во  раз"/>
-            <Entry Text="{Binding CountRepet}"/>
-            
-            <Label Text="Кол-во выполненых раз"/>
-            <Entry Text="{Binding CountRepetNow}"/>
-            
-            <Label Text="Ради:"/>
-            <Label Text="{Binding WhatIsGoal}"/>
-            <Button Text="Редактировать"
+        <Grid BackgroundColor="#F3F5F9"
+              RowSpacing="0"
+              HorizontalOptions="FillAndExpand"
+              VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="110"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <!--#region Верхнее табло -->
+            <Frame Grid.Row="0"
+                   BackgroundColor="#5C5470" 
+                   Padding="24" 
+                   CornerRadius="0"
+                   Margin="0,5">
+                <Label Text="{Binding SkillName}" 
+                       HorizontalTextAlignment="Center"
+                       TextColor="#F3F5F9" 
+                       FontSize="20"/>
+            </Frame>
+            <!--#endregion-->
+
+            <Grid Grid.Row="1"
+                  Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Text="Общее время"
+                       Style="{StaticResource MyLabel_1}"/>
+
+                <Label Grid.Column="1"
+                       Grid.Row="0"
+                       Text="{Binding GoalTime}"
+                       Style="{StaticResource MyLabel_1}"/>
+
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Text ="Вложенное время"
+                       Style="{StaticResource MyLabel_1}"/>
+
+                <Label Grid.Column="1"
+                       Grid.Row="1"
+                       Text="{Binding AllTime}"
+                       Style="{StaticResource MyLabel_1}"/>
+                <StackLayout Grid.Row="2"
+                             Orientation="Horizontal"
+                             HorizontalOptions="Center">
+                    <Label Text="Время, мин."
+                           Style="{StaticResource MyLabel_1}"/>
+
+                    <Button x:Name="buttonAdd"
+                            ImageSource="add_50.png"  
+                            Style="{StaticResource MyButton}"
+                            Command="{Binding AddTime}"
+                            WidthRequest="35"/>
+
+                    <Button ImageSource="minus_50.png"
+                            Style="{StaticResource MyButton}"
+                            Command="{Binding TakeAwayTime}"
+                            WidthRequest="35"/>
+                </StackLayout>
+
+                <Entry Grid.Column="1"
+                       Grid.Row="2"
+                       Text="{Binding Minuts}"
+                       WidthRequest="60"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Margin="30,0"/>
+                
+                <Label Grid.Row="3"
+                       Text="Кол-во  раз"
+                       Style="{StaticResource MyLabel_1}"/>
+                <Entry Grid.Row="3"
+                       Grid.Column="1"
+                       Text="{Binding CountRepet}"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Margin="30,0"/>
+
+                <Label Grid.Row="4"
+                       Text="Кол-во выполненых раз"
+                       Style="{StaticResource MyLabel_1}"/>
+                <Entry Grid.Row="4"
+                       Grid.Column="1"
+                       Text="{Binding CountRepetNow}"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Margin="30,0"/>
+
+                <Label Grid.Row="5"
+                       Text="Ради:"
+                       Style="{StaticResource MyLabel_1}"/>
+                <Entry Grid.Row="5"
+                       Grid.Column="1"
+                       Text="{Binding WhatIsGoal}"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="10,0"/>
+            </Grid>
+            <Button Grid.Row="2"
+                    CornerRadius="20"
+                    Margin="5"
+                    Text="Редактировать"
+                    TextColor="#352F44"
                     Command="{Binding EditSkill}"/>
-        </StackLayout>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
