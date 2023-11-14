@@ -10,7 +10,7 @@ using System.Windows.Input;
 using I_am_profi.Pages;
 using Xamarin.Forms;
 using System.Threading.Tasks;
-
+using I_am_profi.ViewModeks.ForView;
 
 namespace I_am_profi.ViewModeks
 {
@@ -41,8 +41,10 @@ namespace I_am_profi.ViewModeks
             }
         }
 
-        private ObservableCollection<Skill> skills;
-        public ObservableCollection<Skill> Skills
+        private CreatorSkillForView _creatorSkillsForView;
+
+        private ObservableCollection<SkillForView> skills;
+        public ObservableCollection<SkillForView> Skills
         {
             get => skills;
             set
@@ -51,8 +53,8 @@ namespace I_am_profi.ViewModeks
                 OnPropertyChanged(nameof(Skills));
             }
         }
-        private Skill _selectedSkill;
-        public Skill SelectedSkill
+        private SkillForView _selectedSkill;
+        public SkillForView SelectedSkill
         {
             get => _selectedSkill;
             set
@@ -106,13 +108,15 @@ namespace I_am_profi.ViewModeks
 
         public void GetSkills()
         {
-            ObservableCollection<Skill> newSkills = new ObservableCollection<Skill>();
+            _creatorSkillsForView = new CreatorSkillForView();
+            ObservableCollection<SkillForView> newSkills = new ObservableCollection<SkillForView>();
             var s = DB.GetSkills();
             if(s != null)
             {
                 foreach(var skill in s)
                 {
-                    newSkills.Add(skill);
+                    var skillFV = _creatorSkillsForView.CreateSkillFV(skill);
+                    newSkills.Add(skillFV);
                 }
             }
             Skills = newSkills;
@@ -121,7 +125,7 @@ namespace I_am_profi.ViewModeks
         {
             if(SelectedSkill!= null)
             {
-                DB.DeleteSkill(SelectedSkill);
+                DB.DeleteSkill(SelectedSkill.idSkill);
                 SelectedSkill = null;
                 GetSkills();
             }

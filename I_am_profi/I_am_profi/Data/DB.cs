@@ -23,6 +23,22 @@ namespace I_am_profi.Data
         {
             return conn.Table<Skill>().ToList();
         }
+        public Skill GetSkill(int idSkill)
+        {
+            var skillDB = conn.Table<Skill>().ToList();
+
+            Skill skill = new Skill();
+            if (skillDB.Count > 0)
+            {
+                foreach(var s in skillDB)
+                {
+                    if(s.ID == idSkill) return s;
+                }
+            }
+            
+            
+            return skill;
+        }
 
         public void ChangeTimeAlltSkill(Skill skill)
         {
@@ -36,6 +52,19 @@ namespace I_am_profi.Data
         public void DeleteSkill(Skill skill)
         {
             conn.Delete(skill);
+        }
+        public void DeleteSkill(int skillId)
+        {
+            var skillDB = conn.Table<Skill>().ToList();
+
+            Skill skill = new Skill();
+            if (skillDB.Count > 0)
+            {
+                foreach (var s in skillDB)
+                {
+                    if (s.ID == skillId) conn.Delete(s);
+                }
+            }            
         }
         #endregion
 

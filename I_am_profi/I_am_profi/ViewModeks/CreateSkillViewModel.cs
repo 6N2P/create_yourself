@@ -101,6 +101,8 @@ namespace I_am_profi.ViewModeks
             skill.WhatIsGoal = GoalString;
             skill.IsKeepTrack = true;
             skill.ProcentSkill = 0;
+            skill.CreateData = DateTime.Now;
+            skill.EditDateTime = DateTime.Now;
 
             DB.SaveSkill(skill);
 

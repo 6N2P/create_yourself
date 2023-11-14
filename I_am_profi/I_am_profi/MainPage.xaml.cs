@@ -10,6 +10,7 @@ using Xamarin.CommunityToolkit;
 using I_am_profi.Pages;
 using Xamarin.CommunityToolkit.UI.Views;
 using I_am_profi.Data;
+using I_am_profi.ViewModeks.ForView;
 
 namespace I_am_profi
 {
@@ -35,7 +36,7 @@ namespace I_am_profi
         {
             if(_mainPageviewModel.SelectedSkill != null)
             {
-                EditSkillViewModel editSkillViewModel = new EditSkillViewModel(_mainPageviewModel.SelectedSkill);
+                EditSkillViewModel editSkillViewModel = new EditSkillViewModel(_mainPageviewModel.SelectedSkill.idSkill);
                 editSkillViewModel.EditSkillEvent += _mainPageviewModel.GetSkills;
                 await Navigation.PushAsync(new EditSkillPage(editSkillViewModel));
             }            
@@ -43,7 +44,7 @@ namespace I_am_profi
         //Для того чтобы можно было выбирать в Expandere эллемент
         private void Expander_Tapped(object sender, EventArgs e)
         {
-            var Exp = ((Expander)sender).BindingContext as Skill;
+            var Exp = ((Expander)sender).BindingContext as SkillForView;
             this._mainPageviewModel.SelectedSkill = Exp;
         }
     }

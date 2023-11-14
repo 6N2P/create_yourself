@@ -168,12 +168,17 @@
                                                     TextColor="Black"
                                                     Text="%"/>
                                         </StackLayout>
-                                        <Label Grid.Column="1"
+                                        <StackLayout Grid.Column="1"
+                                                     Orientation="Horizontal"
+                                                     HorizontalOptions="Center"
+                                               VerticalOptions="Center">
+                                        <Label 
                                                FontSize="18"
                                                Text="{Binding Name}"
-                                               TextColor="Black"
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="Center"/>
+                                               TextColor="Black" />
+                                            <Label Text="{Binding SkillLevel}"
+                                                   FontSize="14"/>
+                                        </StackLayout>
                                     </Grid>
                                 </ex:Expander.Header>
                                 <Grid>

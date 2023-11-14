@@ -11,9 +11,10 @@ namespace I_am_profi.ViewModeks
 {
     public class EditSkillViewModel : BasePropertyChange
     {
-        public EditSkillViewModel(Skill selectedSkill)
+        public EditSkillViewModel(int selectedSkillId)
         { 
-            _skill = selectedSkill;
+
+            _skill = DB.GetSkill( selectedSkillId);
             SkillName = _skill.Name;
             GoalTime = GetGoalTime();
             AllTime = GetAllTime();
