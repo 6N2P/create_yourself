@@ -111,11 +111,9 @@
                 <Label Grid.Row="5"
                        Text="Ради:"
                        Style="{StaticResource MyLabel_1}"/>
-                <Entry Grid.Row="5"
-                       Grid.Column="1"
-                       Text="{Binding WhatIsGoal}"
-                       VerticalTextAlignment="Center"
-                       HorizontalTextAlignment="Center"
+                <Editor Grid.Row="6"
+                       Grid.Column="0"
+                       Text="{Binding WhatIsGoal}"                       
                        Margin="10,0"/>
             </Grid>
             <Button Grid.Row="2"

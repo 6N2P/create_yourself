@@ -154,7 +154,7 @@
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="3.5"/>
+                                            <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <StackLayout Grid.Column="0"
                                                      Orientation="Horizontal"
@@ -176,9 +176,12 @@
                                                FontSize="18"
                                                Text="{Binding Name}"
                                                TextColor="Black" />
-                                            <Label Text="{Binding SkillLevel}"
-                                                   FontSize="14"/>
+                                            
                                         </StackLayout>
+                                        <Label Grid.Column="2"
+                                            Text="{Binding SkillLevel}"
+                                                   FontSize="14"
+                                                   VerticalTextAlignment="Center"/>
                                     </Grid>
                                 </ex:Expander.Header>
                                 <Grid>
@@ -221,6 +224,29 @@
                                             <Label Text="{Binding CountRepet}"
                                                    TextColor="#5C5470"/>
                                         </StackLayout>
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="FillAndExpand">
+                                            <Label Text="Желаемое время в неделю:"
+                                                   TextColor="#5C5470"/>
+                                            <Label Text="{Binding DesiredTime ,StringFormat='{}{0:hh}'}"
+                                                   TextColor="#5C5470"/>
+                                            <Label Text="ч."
+                                                   TextColor="#5C5470"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="FillAndExpand">
+                                            <Label Text="Создан:"
+                                                   TextColor="#5C5470"/>
+                                            <Label Text="{Binding CreateData, StringFormat='{}{0:dd\\.MM\\.yyyy}'}"
+                                                   TextColor="#5C5470"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="FillAndExpand">
+                                            <Label Text="Дата последних даных:"
+                                                   TextColor="#5C5470"/>
+                                            <Label Text="{Binding EditDateTime, StringFormat='{}{0:dd\\.MM\\.yyyy}'}"
+                                                   TextColor="#5C5470"/>
+                                        </StackLayout>
                                         <Label Text=""/>
                                     </StackLayout>
                                 </Grid>
@@ -233,28 +259,84 @@
         <!--#endregion-->
 
         <!--#region Нижние кнопки -->
-        <StackLayout Grid.Row="3"
+        <Frame Grid.Row="3"
+               Padding="0"
+               BackgroundColor="#B9B4C7">
+        <StackLayout 
             Orientation="Horizontal"
                      HorizontalOptions="Center">
-            <Button x:Name="CreateSkillBtn"
-                    ImageSource="Create_1_32.png"                   
-                    Style="{StaticResource MyButton}"                    
-                    Clicked="CreateSkillBtn_Clicked"/>
+            <ImageButton x:Name="CreateSkillBtn"
+                         Source="Create_1_32.png"    
+                         HeightRequest="40"  
+                         BackgroundColor="#B9B4C7"
+                          Margin="2"
+                         Clicked="CreateSkillBtn_Clicked">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale"
+                                        Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
 
-            <Button x:Name="EditSkillBtn"
-                    Style="{StaticResource MyButton}"
-                    ImageSource="Edit_32.png"  
-                    Clicked="EditSkillBtn_Clicked"/>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale"
+                                        Value="0.8" />
+                            </VisualState.Setters>
+                        </VisualState>
 
-            <Button x:Name="DeletSkillBtn"
-                    Style="{StaticResource MyButton}"
-                    ImageSource="Delet_32.png"
-                    Command="{Binding DeleteSkillCommand}"/>
-            <Button ImageSource="Clok_32.png"
-                    Style="{StaticResource MyButton}"/>
-            <Button ImageSource="Medal_32.png"
-                    Style="{StaticResource MyButton}"/>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
+
+            <ImageButton x:Name="EditSkillBtn"
+                         Source="Edit_32.png"  
+                         HeightRequest="40"  
+                         BackgroundColor="#B9B4C7"
+                          Margin="2"
+                         Clicked="EditSkillBtn_Clicked"/>
+
+            <ImageButton x:Name="DeletSkillBtn"
+                         Source="Delet_32.png"
+                         HeightRequest="40"  
+                         BackgroundColor="#B9B4C7"
+                          Margin="2"
+                         Command="{Binding DeleteSkillCommand}"/>
+
+            <ImageButton Source="Clok_32.png"
+                        HeightRequest="40"  
+                         BackgroundColor="#B9B4C7"
+                         Margin="2"/>
+
+            <ImageButton Source="Medal_32.png"
+                         HeightRequest="40"  
+                         BackgroundColor="#B9B4C7"
+                         Margin="2">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale"
+                                        Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale"
+                                        Value="0.8" />
+                                <Setter Property="BackgroundColor" Value="#B9B4C7"/>
+                                    <Setter Property="BorderColor" Value="#B9B4C7"/>
+                                </VisualState.Setters>
+                        </VisualState>
+
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </ImageButton>
         </StackLayout>
+        </Frame>
         <!--#endregion-->
     </Grid>
 

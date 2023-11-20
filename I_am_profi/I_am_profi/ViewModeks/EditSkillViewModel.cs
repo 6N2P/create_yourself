@@ -187,6 +187,7 @@ namespace I_am_profi.ViewModeks
             _skill.CountRepetNaw = CountRepetNow;
             _skill.ProcentSkill = GetProcent();
             _skill.WhatIsGoal = WhatIsGoal;
+            _skill.EditDateTime = DateTime.Now;
 
             DB.ChangeTimeAlltSkill( _skill );
             EditSkillEvent?.Invoke();

@@ -22,24 +22,29 @@ namespace I_am_profi.ViewModeks.ForView
             skillFV.IsKeepTrack = skill.IsKeepTrack;
             skillFV.ProcentSkill = skill.ProcentSkill;
             skillFV.SkillLevel = GetSkillLeval(skill.AllTime);
+            skillFV.CreateData = skill.CreateData;
+            skillFV.EditDateTime = skill.EditDateTime;
 
             return skillFV;
         }
 
         private string GetSkillLeval (TimeSpan allTaim)
         {
+            //40 часов стандартная неделя
+            //160 часов в месяце
+            //160*12=1920 год
             string result = string.Empty;
             int days = allTaim.Days;
             int hours = allTaim.Hours;
             int allHours = days * 24 + hours;
 
-            if(allHours >= 0 && allHours < 50)
+            if(allHours >= 0 && allHours < 160*8)
             {
                 return result = "Новичек";
             }
             else
             {
-                if(allHours >= 50 &&  allHours < 200) 
+                if(allHours >= 240 &&  allHours < 160 * 18) 
                 {
                     return result = "Ознакомлен";
                 }
