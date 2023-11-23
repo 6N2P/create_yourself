@@ -235,6 +235,15 @@
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal"
                                                      HorizontalOptions="FillAndExpand">
+                                            <Label Text="Вложенное время в неделю:"
+                                                   TextColor="#5C5470"/>
+                                            <Label Text="{Binding TameWeek ,StringFormat='{}{0:hh\\:mm}'}"
+                                                   TextColor="#5C5470"/>
+                                            <Label Text="ч."
+                                                   TextColor="#5C5470"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="FillAndExpand">
                                             <Label Text="Создан:"
                                                    TextColor="#5C5470"/>
                                             <Label Text="{Binding CreateData, StringFormat='{}{0:dd\\.MM\\.yyyy}'}"

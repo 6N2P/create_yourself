@@ -12,6 +12,7 @@ namespace I_am_profi.ViewModeks.ForView
         public TimeSpan AllTime { get; set; } //сумма минут которые вносятся
         public TimeSpan GoalTime { get; set; } //конечное сумарное варемя 
         public TimeSpan DesiredTime { get; set; } //желаемое время за навыком в неделю
+        public TimeSpan TameWeek { get; set; } // время потраченое в неделю
         public int CountRepet { get; set; } //колличество шт. (например сколько книг желаешь прочитать)
         public int CountRepetNaw { get; set; } //сколько уже сделал
         public string WhatIsGoal { get; set; }

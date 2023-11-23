@@ -106,6 +106,27 @@ namespace I_am_profi.ViewModeks
 
             DB.SaveSkill(skill);
 
+            var skillsDB = DB.GetSkills();
+
+            var skillFromDB = new Skill();
+            if (skillsDB != null)
+            {
+                foreach (var item in skillsDB)
+                {
+                    if (item.Name == skill.Name && item.CreateData.Date == DateTime.Now.Date)
+                    {
+                        skillFromDB = item;
+                    }
+                }
+
+                TimeWeek timeWeek = new TimeWeek();
+                timeWeek.idSkell = skillFromDB.ID;
+                timeWeek.DateEdit = DateTime.Now;
+
+                DB.SaveTimeWeek(timeWeek);
+            }
+            
+
             CreateSkillEvent?.Invoke();
         }
     }

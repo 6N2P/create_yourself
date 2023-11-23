@@ -13,9 +13,10 @@ namespace I_am_profi.Data
         {
             conn = new SQLiteConnection(path);
             conn.CreateTable<Skill>();
-            conn.CreateTable<Revard>();
-            conn.CreateTable<Reminder>();
+            conn.CreateTable<Revard>(); //награда
+            conn.CreateTable<Reminder>();//Напоминание
             conn.CreateTable<UserTime>();
+            conn.CreateTable<TimeWeek>();
         }
 
         #region Skell
@@ -68,6 +69,19 @@ namespace I_am_profi.Data
         }
         #endregion
 
+        public List<TimeWeek> GetTimeWeeks()
+        {
+            return conn.Table<TimeWeek>().ToList();
+        }
+        public int SaveTimeWeek(TimeWeek timeWeek)
+        {
+            return conn.Insert(timeWeek);
+        }
+        public void UpdateTimeWeek(TimeWeek timeWeek)
+        {
+            conn.Update(timeWeek);
+        }
+
         #region Revard
         public List<Revard> GetRevard()
         {
@@ -110,7 +124,55 @@ namespace I_am_profi.Data
         public void DeleteUserTime(UserTime userTime)
         {
             conn.Delete(userTime);
-        } 
+        }
+
+        public TimeWeek GetTimeWeeks(int selectedSkillId)
+        {
+            var timeWeeksDB = conn.Table<TimeWeek>().ToList();
+            foreach (var timeWeek in timeWeeksDB)
+            {
+                if(timeWeek.idSkell ==  selectedSkillId) return timeWeek;
+            }
+            return null;
+        }
+
+        public void ClearTimeWeek(TimeWeek timeWeek)
+        {
+            var timeWeekDB = conn.Table<TimeWeek>().ToList();
+            if(timeWeekDB != null)
+            {
+                foreach(var item in timeWeekDB)
+                {
+                    if(item.ID ==  timeWeek.ID)
+                    {
+                        item.TimeMonday = TimeSpan.Zero;
+                        item.TimeTuesday = TimeSpan.Zero;
+                        item.TimeWednesday = TimeSpan.Zero;
+                        item.TimeThursday = TimeSpan.Zero;
+                        item.TimeFriday = TimeSpan.Zero;
+                        item.TimeSaturday = TimeSpan.Zero;
+                        item.TimeSunday = TimeSpan.Zero;    
+                        
+                        conn.Update(item);
+                    }
+                }
+            }
+        }
+
+        internal void DeleteTimeWeek(int idSkill)
+        {
+            var timeWeekDB = conn.Table<TimeWeek>().ToList();
+            if (timeWeekDB != null)
+            {
+                foreach (var item in timeWeekDB)
+                {
+                    if ( item.idSkell == idSkill)
+                    {
+                        conn.Delete(item);
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

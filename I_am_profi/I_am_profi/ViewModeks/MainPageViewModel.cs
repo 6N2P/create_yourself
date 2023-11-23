@@ -126,6 +126,7 @@ namespace I_am_profi.ViewModeks
             if(SelectedSkill!= null)
             {
                 DB.DeleteSkill(SelectedSkill.idSkill);
+                DB.DeleteTimeWeek(SelectedSkill.idSkill);
                 SelectedSkill = null;
                 GetSkills();
             }

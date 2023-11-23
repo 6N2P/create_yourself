@@ -1,6 +1,7 @@
 ﻿using I_am_profi.Data;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Security.Principal;
 using System.Text;
@@ -15,6 +16,7 @@ namespace I_am_profi.ViewModeks
         { 
 
             _skill = DB.GetSkill( selectedSkillId);
+            _timeWeek = DB.GetTimeWeeks(selectedSkillId);
             SkillName = _skill.Name;
             GoalTime = GetGoalTime();
             AllTime = GetAllTime();
@@ -32,6 +34,7 @@ namespace I_am_profi.ViewModeks
         public event EditSkillHandler EditSkillEvent;
 
         private Skill _skill;
+        private TimeWeek _timeWeek;
 
         private string _skillName;
         private int _minuts;
@@ -127,6 +130,8 @@ namespace I_am_profi.ViewModeks
         {
             var timeAll = ConvertToTime(AllTime);
             AllTime = GetAllTime((timeAll + TimeSpan.FromMinutes(Minuts)));
+
+            UpdateTimeTimeWeekAdd(_timeWeek);
         }
 
 
@@ -135,6 +140,8 @@ namespace I_am_profi.ViewModeks
         {
             var timeAll = ConvertToTime(AllTime);
             AllTime = GetAllTime((timeAll - TimeSpan.FromMinutes(Minuts)));
+
+            UpdateTimeTimeWeeTakeAway(_timeWeek);
         }
 
         private TimeSpan ConvertToTime(string timeString)
@@ -190,7 +197,144 @@ namespace I_am_profi.ViewModeks
             _skill.EditDateTime = DateTime.Now;
 
             DB.ChangeTimeAlltSkill( _skill );
+
+          
             EditSkillEvent?.Invoke();
+        }
+
+        private void UpdateTimeTimeWeekAdd(TimeWeek timeWeek)
+        {
+            CultureInfo myCI = new CultureInfo("ru-RU");
+            Calendar myCalendar = myCI.Calendar;
+            CalendarWeekRule myCWRule = myCI.DateTimeFormat.CalendarWeekRule;
+            DayOfWeek myFirstDayOfWeek = DayOfWeek.Monday;
+
+
+            var weekLastChange = myCalendar.GetWeekOfYear(_timeWeek.DateEdit, myCWRule, myFirstDayOfWeek);
+            var weekYearNaw = myCalendar.GetWeekOfYear(DateTime.Now, myCWRule, myFirstDayOfWeek);
+            if (weekYearNaw > weekLastChange)
+            {
+                DB.ClearTimeWeek(_timeWeek);
+            }
+
+            var dayWeek = DateTime.Now.ToString("dddd").ToLower();
+
+            switch (dayWeek)
+            {
+                case "понедельник":
+                    timeWeek.TimeMonday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "вторник":
+                    timeWeek.TimeTuesday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "среда":
+                    timeWeek.TimeWednesday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "четверг":
+                    timeWeek.TimeThursday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "пятница":
+                    timeWeek.TimeFriday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "суббота":
+                    timeWeek.TimeSaturday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "воскресенье":
+                    timeWeek.TimeSunday += TimeSpan.FromMinutes(Minuts);
+                    break;
+
+                case "monday":
+                    timeWeek.TimeMonday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "tuesday":
+                    timeWeek.TimeTuesday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "wednesday":
+                    timeWeek.TimeWednesday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "thursday":
+                    timeWeek.TimeThursday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "friday":
+                    timeWeek.TimeFriday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "saturday":
+                    timeWeek.TimeSaturday += TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "sunday":
+                    timeWeek.TimeSunday += TimeSpan.FromMinutes(Minuts);
+                    break;
+            }
+
+            timeWeek.DateEdit = DateTime.Now;
+            DB.UpdateTimeWeek(timeWeek);
+        }
+        private void UpdateTimeTimeWeeTakeAway(TimeWeek timeWeek)
+        {
+            CultureInfo myCI = new CultureInfo("ru-RU");
+            Calendar myCalendar = myCI.Calendar;
+            CalendarWeekRule myCWRule = myCI.DateTimeFormat.CalendarWeekRule;
+            DayOfWeek myFirstDayOfWeek = DayOfWeek.Monday;
+
+
+            var weekLastChange = myCalendar.GetWeekOfYear(_timeWeek.DateEdit, myCWRule, myFirstDayOfWeek);
+            var weekYearNaw = myCalendar.GetWeekOfYear(DateTime.Now, myCWRule, myFirstDayOfWeek);
+            if (weekYearNaw > weekLastChange)
+            {
+                DB.ClearTimeWeek(_timeWeek);
+            }
+
+            var dayWeek = DateTime.Now.ToString("dddd").ToLower();
+
+            switch (dayWeek)
+            {
+                case "понедельник":
+                    timeWeek.TimeMonday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "вторник":
+                    timeWeek.TimeTuesday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "среда":
+                    timeWeek.TimeWednesday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "четверг":
+                    timeWeek.TimeThursday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "пятница":
+                    timeWeek.TimeFriday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "суббота":
+                    timeWeek.TimeSaturday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "воскресенье":
+                    timeWeek.TimeSunday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+
+                case "monday":
+                    timeWeek.TimeMonday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "tuesday":
+                    timeWeek.TimeTuesday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "wednesday":
+                    timeWeek.TimeWednesday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "thursday":
+                    timeWeek.TimeThursday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "friday":
+                    timeWeek.TimeFriday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "saturday":
+                    timeWeek.TimeSaturday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+                case "sunday":
+                    timeWeek.TimeSunday -= TimeSpan.FromMinutes(Minuts);
+                    break;
+            }
+
+            timeWeek.DateEdit = DateTime.Now;
+            DB.UpdateTimeWeek(timeWeek);
         }
 
         private int GetProcent()

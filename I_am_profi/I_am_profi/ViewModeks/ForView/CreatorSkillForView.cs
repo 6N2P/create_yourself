@@ -1,6 +1,7 @@
 ﻿using I_am_profi.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace I_am_profi.ViewModeks.ForView
@@ -24,8 +25,30 @@ namespace I_am_profi.ViewModeks.ForView
             skillFV.SkillLevel = GetSkillLeval(skill.AllTime);
             skillFV.CreateData = skill.CreateData;
             skillFV.EditDateTime = skill.EditDateTime;
+            skillFV.TameWeek = GetTimeWeek(skill);
 
             return skillFV;
+        }
+        private static DB dB;
+        public static DB DB
+        {
+            get
+            {
+                if (dB is null) dB = new DB(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "skillDB.sqlite3"));
+                return dB;
+            }
+        }
+        private TimeSpan GetTimeWeek(Skill skill)
+        {
+            TimeSpan result = TimeSpan.Zero;
+            var listTimeDB = DB.GetTimeWeeks(skill.ID);
+            if(listTimeDB != null)
+            {
+                result = listTimeDB.TimeMonday + listTimeDB.TimeTuesday + listTimeDB.TimeWednesday + listTimeDB.TimeThursday +
+                    listTimeDB.TimeFriday + listTimeDB.TimeSaturday + listTimeDB.TimeSunday;
+            }
+
+            return result;
         }
 
         private string GetSkillLeval (TimeSpan allTaim)
